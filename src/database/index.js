@@ -18,8 +18,11 @@ class Database {
   init() {
     const { NODE_ENV } = process.env
     const define = { timestamps: true, underscored: true }
-    const dbConfig = { ...db[NODE_ENV], define }
-    this.connection = new Sequelize(dbConfig)
+    const { url, ...rest } = db[NODE_ENV]
+    const dbConfig = url ? [url] : []
+    dbConfig.push({ ...rest, define })
+    console.log(dbConfig)
+    this.connection = new Sequelize(...dbConfig)
 
     Object.keys(models)
       .map((key) => models[key])

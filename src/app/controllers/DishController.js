@@ -33,7 +33,7 @@ module.exports = {
         dishes = await Dish.findAll({
           where: {
             name: {
-              [Op.iLike]: name,
+              [Op.iLike]: `%${name}%`,
             },
           },
         })

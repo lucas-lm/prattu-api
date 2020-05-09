@@ -18,4 +18,6 @@ router.use('/orders', orders)
 router.use('/feedbacks', feedbacks)
 // router.use('/reviews', reviews)
 
+// router.post('/tests', upload.single('avatar'), tests)
+
 module.exports = router

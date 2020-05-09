@@ -2,10 +2,10 @@ const { DataTypes } = require('sequelize')
 
 module.exports = {
   comment: {
-    type: Sequelize.TEXT,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   stars: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
   },
 }

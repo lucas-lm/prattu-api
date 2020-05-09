@@ -7,10 +7,11 @@ require('../database')
 
 const app = express()
 
+app.use(express.static('tmp')) // files
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
-// multipart form
 app.use(helmet())
 app.use(authentication)
 app.use(router)

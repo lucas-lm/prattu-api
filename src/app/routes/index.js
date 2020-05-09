@@ -18,7 +18,6 @@ router.use('/dishes', dishes)
 router.use('/orders', orders)
 router.use('/feedbacks', feedbacks)
 router.use('/my_kitchen', myKitchen)
-// router.use('/reviews', reviews)
 
 // router.post('/tests', upload.single('avatar'), tests)
 

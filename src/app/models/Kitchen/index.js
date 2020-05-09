@@ -10,7 +10,7 @@ class Kitchen extends Model {
 
 Kitchen.associate = function (models) {
   this.belongsTo(models.User, { foreignKey: 'user_id', as: 'owner' })
-  this.hasMany(models.Dish, { foreignKey: 'kitchen_id', as: 'dish' })
+  this.hasMany(models.Dish, { foreignKey: 'kitchen_id', as: 'dishes' })
   this.hasMany(models.Order, { foreignKey: 'kitchen_id', as: 'orders' })
 }
 

@@ -38,7 +38,6 @@ module.exports = {
           },
         })
       }
-      console.log(name)
       return res.json(dishes)
     } catch (error) {
       return res.status(400).json({ error })

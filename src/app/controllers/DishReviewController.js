@@ -3,7 +3,8 @@ const { User, Dish } = require('../models')
 module.exports = {
   async create(req, res) {
     const { sub: customerId } = req.auth
-    const { comment, dishId } = req.body
+    const { comment } = req.body
+    const { dishId } = req.params
     try {
       const user = await User.findByPk(customerId)
       await user.createDishReview({ comment, dish_id: dishId })
@@ -17,10 +18,14 @@ module.exports = {
   async index(req, res) {
     const { dishId } = req.params
     try {
-      const dish = await Dish.findByPk(dishId)
-      const reviews = await dish.getReviews()
-      return res.json(reviews)
+      const dish = await Dish.findByPk(dishId, {
+        include: {
+          association: 'reviews',
+        },
+      })
+      return res.json(dish)
     } catch (error) {
+      console.error(error)
       return res.status(400).json({ error })
     }
   },

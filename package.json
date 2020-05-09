@@ -31,6 +31,7 @@
     "pretest": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test && sequelize db:seed:all --env test",
     "test": "jest -i",
     "dev": "cross-env NODE_ENV=development nodemon -r dotenv/config src/index.js",
+    "prestart": "sequelize db:migrate",
     "start": "node src/index.js"
   }
 }

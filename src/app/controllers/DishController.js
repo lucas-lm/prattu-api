@@ -1,4 +1,5 @@
 const { Dish, Kitchen, User } = require('../models')
+const { Op } = require('sequelize')
 
 const notImplemented = (req, res) => res.sendStatus(501)
 
@@ -24,7 +25,16 @@ module.exports = {
 
   async index(req, res) {
     try {
-      const dishes = await Dish.findAll()
+      let dishes = null
+      const { name } = req.query
+      if (!name) dishes = await Dish.findAll()
+      dishes = await Dish.findAll({
+        where: {
+          name: {
+            [Op.iLike]: name,
+          },
+        },
+      })
       return res.json(dishes)
     } catch (error) {
       return res.status(400).json({ error })

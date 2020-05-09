@@ -5,13 +5,19 @@ const notImplemented = (req, res) => res.sendStatus(501)
 module.exports = {
   async create(req, res) {
     const { sub: id } = req.auth
+    let photo = null
     const { name, price, description = null } = req.body
     try {
+      if (req.file) {
+        const { filename } = req.file
+        photo = `/uploads/${filename}`
+      }
       const user = await User.findByPk(id)
       const kitchen = await user.getKitchen()
-      await kitchen.createDish({ name, price, description })
+      await kitchen.createDish({ name, price, description, photo })
       return res.sendStatus(201)
     } catch (error) {
+      console.error(error)
       return res.status(400).json({ error })
     }
   },

@@ -8,7 +8,7 @@ module.exports = {
       where: { email },
       attributes: ['id', 'password'],
     })
-    if (user === null) return res.status(400).json({ error: 'Email not found' })
+    if (!user) return res.status(400).json({ error: 'Email not found' })
     const isPasswordCorrect = await bcrypt.compare(password, user.password)
     if (!isPasswordCorrect)
       return res.status(400).json({ error: 'Incorrect password' })

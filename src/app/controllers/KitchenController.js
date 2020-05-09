@@ -32,6 +32,15 @@ module.exports = {
     return res.json(kitchen)
   },
 
-  update: notImplemented,
-  delete: notImplemented,
+  async update(req, res) {
+    const { kitchenId } = req.params
+    await Kitchen.update(req.body, { where: { id: kitchenId } })
+    return res.sendStatus(204)
+  },
+
+  async delete(req, res) {
+    const { kitchenId } = req.params
+    await Kitchen.destroy({ where: { id: kitchenId } })
+    return res.sendStatus(204)
+  },
 }

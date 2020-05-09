@@ -21,7 +21,6 @@ class Database {
     const { url, ...rest } = db[NODE_ENV]
     const dbConfig = url ? [url] : []
     dbConfig.push({ ...rest, define })
-    console.log(dbConfig)
     this.connection = new Sequelize(...dbConfig)
 
     Object.keys(models)

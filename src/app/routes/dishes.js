@@ -14,7 +14,12 @@ dishes.post(
   upload.single('photo'),
   DishController.create
 )
-dishes.put('/:dishId', allow('authenticated'), DishController.update)
+dishes.put(
+  '/:dishId',
+  allow('authenticated'),
+  upload.single('photo'),
+  DishController.update
+)
 dishes.delete('/:dishId', allow('authenticated'), DishController.delete)
 
 // reviews

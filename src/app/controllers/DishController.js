@@ -27,14 +27,17 @@ module.exports = {
     try {
       let dishes = null
       const { name } = req.query
-      if (!name) dishes = await Dish.findAll()
-      dishes = await Dish.findAll({
-        where: {
-          name: {
-            [Op.iLike]: name,
+      if (!name) {
+        dishes = await Dish.findAll()
+      } else {
+        dishes = await Dish.findAll({
+          where: {
+            name: {
+              [Op.iLike]: name,
+            },
           },
-        },
-      })
+        })
+      }
       return res.json(dishes)
     } catch (error) {
       return res.status(400).json({ error })

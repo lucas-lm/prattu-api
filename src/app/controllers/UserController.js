@@ -9,7 +9,8 @@ module.exports = {
       const user = await User.create({ email, password })
       const [role] = await Role.findOrCreate({ where: { name: 'user' } })
       await user.addRole(role)
-      return res.sendStatus(201)
+      const token = await user.generateToken()
+      return res.status(201).json({ token })
     } catch (error) {
       return res.status(400).json({ error })
     }

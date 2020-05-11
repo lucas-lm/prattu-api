@@ -8,8 +8,8 @@ module.exports = {
     const { name, price, description = null } = req.body
     try {
       if (req.file) {
-        const { filename } = req.file
-        photo = `/uploads/${filename}`
+        const { location = null } = req.file
+        photo = location
       }
       const user = await User.findByPk(id)
       const kitchen = await user.getKitchen()
@@ -55,8 +55,8 @@ module.exports = {
   async update(req, res) {
     const { sub: userId } = req.auth
     const { dishId } = req.params
-    const { filename } = req.file
-    const photo = `/uploads/${filename}`
+    const { location = null } = req.file
+    const photo = location
     const { description, name, price } = req.body
     try {
       await Dish.update(

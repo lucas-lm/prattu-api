@@ -3,11 +3,15 @@ const helmet = require('helmet')
 const cors = require('cors')
 const router = require('./routes')
 const authentication = require('./middlewares/authentication')
+const path = require('path')
 require('../database')
 
 const app = express()
 
-app.use(express.static('tmp')) // files
+app.use(
+  '/public',
+  express.static(path.resolve(__dirname, '..', '..', 'tmp', 'uploads'))
+)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

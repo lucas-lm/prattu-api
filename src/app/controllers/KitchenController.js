@@ -8,7 +8,7 @@ module.exports = {
     if (roles.includes('kitchen'))
       return res.status(403).json({ error: 'already has kitchen' })
 
-    const { location: avatar } = req.file
+    const avatar = req.file ? req.file.location : null
     const { name, legal_id, location } = req.body
     try {
       const [role] = await Role.findOrCreate({ where: { name: 'kitchen' } })

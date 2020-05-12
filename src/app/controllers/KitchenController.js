@@ -9,11 +9,13 @@ module.exports = {
       return res.status(403).json({ error: 'already has kitchen' })
 
     const { location: avatar } = req.file
-    const { name, legal_id } = req.body
+    const { name, legal_id, location } = req.body
     try {
       const [role] = await Role.findOrCreate({ where: { name: 'kitchen' } })
       const user = await User.findByPk(id)
-      await user.createKitchen({ name, legal_id, avatar })
+      console.log(name, legal_id, location, avatar)
+      const point = { type: 'Point', coordinates: JSON.parse(location) }
+      await user.createKitchen({ name, legal_id, avatar, location: point })
       await user.addRole(role)
       const newToken = await user.generateToken()
       return res.status(201).json({ token: newToken })

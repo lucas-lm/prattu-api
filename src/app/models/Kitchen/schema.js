@@ -11,11 +11,11 @@ module.exports = {
     allowNull: false,
   },
   avatar: {
-    type: DataTypes.STRING,
-    allowNull: true,
+    type: DataTypes.TEXT,
   },
   active: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+  location: DataTypes.GEOMETRY('POINT'),
 }

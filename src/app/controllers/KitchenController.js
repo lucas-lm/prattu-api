@@ -20,6 +20,7 @@ module.exports = {
       const newToken = await user.generateToken()
       return res.status(201).json({ token: newToken })
     } catch (error) {
+      console.error(error)
       return res.status(400).json({ error })
     }
   },

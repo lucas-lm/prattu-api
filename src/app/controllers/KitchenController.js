@@ -13,7 +13,6 @@ module.exports = {
     try {
       const [role] = await Role.findOrCreate({ where: { name: 'kitchen' } })
       const user = await User.findByPk(id)
-      console.log(name, legal_id, location, avatar)
       const point = JSON.parse(location)
       await user.createKitchen({ name, legal_id, avatar, location: point })
       await user.addRole(role)

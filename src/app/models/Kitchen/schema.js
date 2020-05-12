@@ -17,5 +17,5 @@ module.exports = {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
-  location: DataTypes.GEOMETRY('POINT'),
+  location: DataTypes.ARRAY(DataTypes.STRING),
 }

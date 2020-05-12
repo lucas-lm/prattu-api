@@ -18,7 +18,7 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
       location: {
-        type: Sequelize.GEOMETRY('POINT'),
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       legal_id: {
         type: Sequelize.INTEGER,
